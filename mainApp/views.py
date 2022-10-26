@@ -4,8 +4,13 @@ import requests
 from .models import City
 from .forms import CityForm
 
-def about(request):
-    return render(request, 'main.html')
+def start(request):
+    if request.method == 'POST':
+        form = CityForm(request.POST)
+        #form.save()
+    form = CityForm()
+    context = {'form': form}
+    return render(request, 'index.html', context)
 
 headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3'}
@@ -40,9 +45,9 @@ def weather(request):
 
     cityes = City.objects.all()
     url = 'http://api.openweathermap.org/data/2.5/weather?q={}&units=imperial&appid=5973931b289c84dcfc954aebde5165a5'
-    # if request.method == 'POST':
-    #     form = CityForm(request.POST)
-    #     form.save()
+    if request.method == 'POST':
+        form = CityForm(request.POST)
+        form.save()
     form = CityForm()
     weather_data = []
     for city in cityes:
