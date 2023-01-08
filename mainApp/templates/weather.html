@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+</head>
+<body>
+<div>
+    {% for weather in weather_data %}
+        <div>
+            <p>
+                <br><h4>{{ weather.city }}</h4>
+                <br><h4>{{ weather.temperature }}°C</h4>
+                <br><h4>Влажность: {{weather.humidity}}%</h4>
+                <br><h4>Давление: {{weather.pressure}} мм рт.ст.</h4>
+                <br><h4>Восход: {{weather.sunrise}} GMT</h4>
+                <br><h4>Закат: {{weather.sunset}} GMT</h4>
+                <br><h4>Скорость ветра: {{weather.windspeed}} км/ч</h4>
+                <br><h4>{{ weather.description }}</h4>
+            </p>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>
